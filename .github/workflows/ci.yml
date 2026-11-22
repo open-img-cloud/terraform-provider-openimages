@@ -1,0 +1,48 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - run: go vet ./...
+      - run: go test -race ./...
+      - name: gofmt
+        run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+  e2e:
+    # The data sources against the live catalog, with OpenTofu and Terraform.
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cli: [tofu, terraform]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - uses: opentofu/setup-opentofu@v1
+        if: matrix.cli == 'tofu'
+        with:
+          tofu_wrapper: false
+      - uses: hashicorp/setup-terraform@v3
+        if: matrix.cli == 'terraform'
+        with:
+          terraform_wrapper: false
+      - name: Plan the e2e configuration
+        run: |
+          set -euo pipefail
+          go build -o "$RUNNER_TEMP/bin/terraform-provider-openimages" .
+          for src in registry.terraform.io registry.opentofu.org; do
+            printf 'provider_installation {\n  dev_overrides { "%s/open-img-cloud/openimages" = "%s" }\n  direct {}\n}\n' "$src" "$RUNNER_TEMP/bin"
+          done > "$RUNNER_TEMP/cli.rc"
+          cd tests/e2e
+          TF_CLI_CONFIG_FILE="$RUNNER_TEMP/cli.rc" ${{ matrix.cli }} apply -auto-approve -input=false
+          TF_CLI_CONFIG_FILE="$RUNNER_TEMP/cli.rc" ${{ matrix.cli }} output -json checks | jq -e 'all(.[]; . == true)'

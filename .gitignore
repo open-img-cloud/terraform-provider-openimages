@@ -1,0 +1,5 @@
+terraform-provider-openimages
+dist/
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate*

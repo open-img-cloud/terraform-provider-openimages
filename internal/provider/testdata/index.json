@@ -1,0 +1,344 @@
+{
+  "schema": "oic-index/v1",
+  "base_url": "https://images.openimages.cloud",
+  "generated_at": "2026-11-22T10:27:25Z",
+  "signing": {
+    "type": "cosign-keyless",
+    "bundle_format": "sigstore-bundle",
+    "certificate_identity_regexp": "^https://github.com/open-img-cloud/\\.github/\\.github/workflows/build-(libguestfs|dib|nix-flake|freebsd)-image\\.yml@",
+    "certificate_oidc_issuer": "https://token.actions.githubusercontent.com"
+  },
+  "images": [
+    {
+      "id": "alpine-linux",
+      "title": "Alpine Linux",
+      "status": "stable",
+      "status_note": null,
+      "support": {
+        "product": "alpine-linux",
+        "release": "3.24",
+        "active_until": null,
+        "security_until": "2028-06-01",
+        "extended_until": null,
+        "is_eol": false,
+        "eol_soon": false,
+        "follows_releases": true,
+        "source": "https://endoflife.date/alpine-linux"
+      },
+      "repo": "https://github.com/open-img-cloud/alpine-linux",
+      "login_user": "alpine",
+      "os_distro": "alpinelinux",
+      "os_version": "3.24.1",
+      "latest_version": "3.24.1",
+      "versions_url": "https://images.openimages.cloud/alpine-linux/versions.json",
+      "packages_url": "https://images.openimages.cloud/alpine-linux/3.24.1/packages-bios.json",
+      "tags": [
+        "openstack",
+        "proxmox",
+        "cloud-init",
+        "signed"
+      ],
+      "glance_properties": {
+        "os_type": "linux",
+        "os_admin_user": "alpine",
+        "hw_qemu_guest_agent": "yes",
+        "hw_disk_bus": "scsi",
+        "hw_scsi_model": "virtio-scsi",
+        "hw_vif_multiqueue_enabled": "true",
+        "os_require_quiesce": "yes"
+      },
+      "optional_glance_properties": {
+        "hw_rng_model": "virtio"
+      },
+      "artifacts": [
+        {
+          "variant": "bios",
+          "version": "3.24.1",
+          "arch": "x86_64",
+          "format": "qcow2",
+          "firmware": "bios",
+          "url": "https://images.openimages.cloud/alpine-linux/3.24.1/alpine-3.24.1-bios-x86_64.qcow2",
+          "sha256": "d9b37c74dd3b8f97011f3a760665e3b8e9da5eca4639f3f1def106689af20706",
+          "sha512": "7bcafaa341b6abd6c5a23b09ff574a101150227e72102e21aa942264c1f453688d06f5e223c5e823dafa27a64db79bbadebaae6d754f56f187005482690f86cf",
+          "size": 101088768,
+          "virtual_size": 209715200,
+          "bundle_url": "https://images.openimages.cloud/alpine-linux/3.24.1/alpine-3.24.1-bios-x86_64.qcow2.bundle",
+          "manifest_url": "https://images.openimages.cloud/alpine-linux/3.24.1/MANIFEST-bios.json",
+          "built_at": "2026-11-12T15:51:23Z",
+          "build_url": "https://github.com/open-img-cloud/alpine-linux/actions/runs/43251806424",
+          "commit": "ddcb38c349710bf1ddd57171689cc11d25a49c04",
+          "signed": true,
+          "glance_properties": {
+            "os_type": "linux",
+            "os_distro": "alpinelinux",
+            "os_version": "3.24.1",
+            "os_admin_user": "alpine",
+            "architecture": "x86_64",
+            "hw_qemu_guest_agent": "yes",
+            "hw_disk_bus": "scsi",
+            "hw_scsi_model": "virtio-scsi",
+            "hw_vif_multiqueue_enabled": "true",
+            "os_require_quiesce": "yes",
+            "oic_id": "alpine-linux",
+            "oic_version": "3.24.1",
+            "oic_sha256": "d9b37c74dd3b8f97011f3a760665e3b8e9da5eca4639f3f1def106689af20706"
+          }
+        },
+        {
+          "variant": "uefi",
+          "version": "3.24.1",
+          "arch": "x86_64",
+          "format": "qcow2",
+          "firmware": "uefi",
+          "url": "https://images.openimages.cloud/alpine-linux/3.24.1/alpine-3.24.1-uefi-x86_64.qcow2",
+          "sha256": "88aaf24f4b7296e367e1470033916cdb3e97b893d597afb4315e23ed5bfe45e2",
+          "sha512": "5bdd98a882354f817ff2f223c79e859acdc9879eeb5f0aa5973d6e12c11c2419dd2b06e37c8acdbdb022c301af64b376be3034f8975857b54d32d2fd699ac920",
+          "size": 109983744,
+          "virtual_size": 224395264,
+          "bundle_url": "https://images.openimages.cloud/alpine-linux/3.24.1/alpine-3.24.1-uefi-x86_64.qcow2.bundle",
+          "manifest_url": "https://images.openimages.cloud/alpine-linux/3.24.1/MANIFEST-uefi.json",
+          "built_at": "2026-11-12T16:08:20Z",
+          "build_url": "https://github.com/open-img-cloud/alpine-linux/actions/runs/43251806424",
+          "commit": "ddcb38c349710bf1ddd57171689cc11d25a49c04",
+          "signed": true,
+          "glance_properties": {
+            "os_type": "linux",
+            "os_distro": "alpinelinux",
+            "os_version": "3.24.1",
+            "os_admin_user": "alpine",
+            "architecture": "x86_64",
+            "hw_qemu_guest_agent": "yes",
+            "hw_disk_bus": "scsi",
+            "hw_scsi_model": "virtio-scsi",
+            "hw_vif_multiqueue_enabled": "true",
+            "os_require_quiesce": "yes",
+            "hw_firmware_type": "uefi",
+            "hw_machine_type": "q35",
+            "oic_id": "alpine-linux",
+            "oic_version": "3.24.1",
+            "oic_sha256": "88aaf24f4b7296e367e1470033916cdb3e97b893d597afb4315e23ed5bfe45e2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "amazon-linux-2",
+      "title": "Amazon Linux 2",
+      "status": "archive",
+      "status_note": "Builds continue for existing workloads; use Amazon Linux 2023 for new deployments.",
+      "support": {
+        "product": "amazon-linux",
+        "release": "2",
+        "active_until": null,
+        "security_until": "2026-06-30",
+        "extended_until": null,
+        "is_eol": true,
+        "eol_soon": false,
+        "follows_releases": false,
+        "source": "https://endoflife.date/amazon-linux"
+      },
+      "repo": "https://github.com/open-img-cloud/amazon-linux-2",
+      "login_user": "ec2-user",
+      "os_distro": "amzn",
+      "os_version": "2",
+      "latest_version": "2.0.20261120.0",
+      "versions_url": "https://images.openimages.cloud/amazon-linux-2/versions.json",
+      "packages_url": "https://images.openimages.cloud/amazon-linux-2/2.0.20261120.0/packages.json",
+      "tags": [
+        "openstack",
+        "proxmox",
+        "cloud-init",
+        "signed"
+      ],
+      "glance_properties": {
+        "os_type": "linux",
+        "os_admin_user": "ec2-user",
+        "hw_qemu_guest_agent": "yes",
+        "hw_disk_bus": "scsi",
+        "hw_scsi_model": "virtio-scsi",
+        "hw_vif_multiqueue_enabled": "true",
+        "os_require_quiesce": "yes"
+      },
+      "optional_glance_properties": {
+        "hw_rng_model": "virtio"
+      },
+      "artifacts": [
+        {
+          "variant": null,
+          "version": "2.0.20261120.0",
+          "arch": "x86_64",
+          "format": "qcow2",
+          "firmware": "bios",
+          "url": "https://images.openimages.cloud/amazon-linux-2/2.0.20261120.0/amzn2-2.0.20261120.0-x86_64.qcow2",
+          "sha256": "4b57499852417ccf3e8bd65021f48ed35c9a1ce8c03bda3a6592e6bbe012c87e",
+          "sha512": "f050d1f4f53de9f040d067d546db477d5245f2f256881d5451696fe338eaf48f9d7e352cbcb69cb6f740e2eceb3b8985fdb7793ad88c56fd764779aef7fbadc1",
+          "size": 466223104,
+          "virtual_size": 26843545600,
+          "bundle_url": "https://images.openimages.cloud/amazon-linux-2/2.0.20261120.0/amzn2-2.0.20261120.0-x86_64.qcow2.bundle",
+          "manifest_url": "https://images.openimages.cloud/amazon-linux-2/2.0.20261120.0/MANIFEST.json",
+          "built_at": "2026-11-21T06:42:21Z",
+          "build_url": "https://github.com/open-img-cloud/amazon-linux-2/actions/runs/44876414113",
+          "commit": "5478259a2622749e910b01bace846512e218f535",
+          "signed": true,
+          "glance_properties": {
+            "os_type": "linux",
+            "os_distro": "amzn",
+            "os_version": "2",
+            "os_admin_user": "ec2-user",
+            "architecture": "x86_64",
+            "hw_qemu_guest_agent": "yes",
+            "hw_disk_bus": "scsi",
+            "hw_scsi_model": "virtio-scsi",
+            "hw_vif_multiqueue_enabled": "true",
+            "os_require_quiesce": "yes",
+            "oic_id": "amazon-linux-2",
+            "oic_version": "2.0.20261120.0",
+            "oic_sha256": "4b57499852417ccf3e8bd65021f48ed35c9a1ce8c03bda3a6592e6bbe012c87e"
+          }
+        }
+      ]
+    },
+    {
+      "id": "debian-13",
+      "title": "Debian 13",
+      "status": "stable",
+      "status_note": null,
+      "support": {
+        "product": "debian",
+        "release": "13",
+        "active_until": "2028-08-09",
+        "security_until": "2030-06-30",
+        "extended_until": "2035-06-30",
+        "is_eol": false,
+        "eol_soon": false,
+        "follows_releases": false,
+        "source": "https://endoflife.date/debian"
+      },
+      "repo": "https://github.com/open-img-cloud/debian-13",
+      "login_user": "debian",
+      "os_distro": "debian",
+      "os_version": "13",
+      "latest_version": "13-20261116-2664",
+      "versions_url": "https://images.openimages.cloud/debian-13/versions.json",
+      "packages_url": "https://images.openimages.cloud/debian-13/13-20261116-2664/packages.json",
+      "tags": [
+        "openstack",
+        "proxmox",
+        "cloud-init",
+        "signed"
+      ],
+      "glance_properties": {
+        "os_type": "linux",
+        "os_admin_user": "debian",
+        "hw_qemu_guest_agent": "yes",
+        "hw_disk_bus": "scsi",
+        "hw_scsi_model": "virtio-scsi",
+        "hw_vif_multiqueue_enabled": "true",
+        "os_require_quiesce": "yes"
+      },
+      "optional_glance_properties": {
+        "hw_rng_model": "virtio"
+      },
+      "artifacts": [
+        {
+          "variant": null,
+          "version": "13-20261116-2664",
+          "arch": "x86_64",
+          "format": "qcow2",
+          "firmware": "bios",
+          "url": "https://images.openimages.cloud/debian-13/13-20261116-2664/debian-13-20261116-2664-x86_64.qcow2",
+          "sha256": "aa144704d883f3766007ce99c81b0a268415a3faed64e31e8cbc1407ff8b950f",
+          "sha512": "e5d38e0c5f62c262fb7e5c0cb0165e944f7bc1371bceddce042cb8f4274bacb67f448f5ac50caa2658b4555b68164b122c02d58e090eec2b36521e66c7f91e71",
+          "size": 277938176,
+          "virtual_size": 3221225472,
+          "bundle_url": "https://images.openimages.cloud/debian-13/13-20261116-2664/debian-13-20261116-2664-x86_64.qcow2.bundle",
+          "manifest_url": "https://images.openimages.cloud/debian-13/13-20261116-2664/MANIFEST.json",
+          "built_at": "2026-11-17T06:40:35Z",
+          "build_url": "https://github.com/open-img-cloud/debian-13/actions/runs/44032660851",
+          "commit": "ac410b7602ff2053f6e2b49d83d10a1069e399e2",
+          "signed": true,
+          "glance_properties": {
+            "os_type": "linux",
+            "os_distro": "debian",
+            "os_version": "13",
+            "os_admin_user": "debian",
+            "architecture": "x86_64",
+            "hw_qemu_guest_agent": "yes",
+            "hw_disk_bus": "scsi",
+            "hw_scsi_model": "virtio-scsi",
+            "hw_vif_multiqueue_enabled": "true",
+            "os_require_quiesce": "yes",
+            "oic_id": "debian-13",
+            "oic_version": "13-20261116-2664",
+            "oic_sha256": "aa144704d883f3766007ce99c81b0a268415a3faed64e31e8cbc1407ff8b950f"
+          }
+        }
+      ]
+    },
+    {
+      "id": "talos-linux",
+      "title": "Talos Linux",
+      "status": "stable",
+      "status_note": "Community image, not an official Sidero Labs product. No SSH: manage the node with talosctl (TCP 50000).",
+      "support": null,
+      "repo": "https://github.com/open-img-cloud/talos-linux",
+      "login_user": null,
+      "os_distro": "talos",
+      "os_version": null,
+      "latest_version": "1.14.6",
+      "versions_url": "https://images.openimages.cloud/talos-linux/versions.json",
+      "packages_url": null,
+      "tags": [
+        "openstack",
+        "proxmox",
+        "kubernetes",
+        "immutable",
+        "signed"
+      ],
+      "glance_properties": {
+        "os_type": "linux",
+        "hw_qemu_guest_agent": "yes",
+        "hw_disk_bus": "scsi",
+        "hw_scsi_model": "virtio-scsi",
+        "hw_vif_multiqueue_enabled": "true",
+        "os_require_quiesce": "yes"
+      },
+      "optional_glance_properties": {
+        "hw_rng_model": "virtio"
+      },
+      "artifacts": [
+        {
+          "variant": null,
+          "version": "1.14.6",
+          "arch": "x86_64",
+          "format": "qcow2",
+          "firmware": "bios",
+          "url": "https://images.openimages.cloud/talos-linux/1.14.6/talos-1.14.6-x86_64.qcow2",
+          "sha256": "402fc15dacf7207d539f28f1d40fb1cbab98f9f915e4a35c4deb9622c937c615",
+          "sha512": "10d429055a392cd225fb39d1ac3d37329183c207a4ac948d1e18071563090fd11d8be2edbd04d340488647d864f65acfa803b04222e8c8c9a2a115370cbd2bc6",
+          "size": 235012096,
+          "virtual_size": 4453302272,
+          "bundle_url": "https://images.openimages.cloud/talos-linux/1.14.6/talos-1.14.6-x86_64.qcow2.bundle",
+          "manifest_url": "https://images.openimages.cloud/talos-linux/1.14.6/MANIFEST.json",
+          "built_at": "2026-11-22T10:19:36Z",
+          "build_url": "https://github.com/open-img-cloud/talos-linux/actions/runs/45011694222",
+          "commit": "e07bf5a89ec8801c715f9d4fa60d3142db4dd399",
+          "signed": true,
+          "glance_properties": {
+            "os_type": "linux",
+            "os_distro": "talos",
+            "architecture": "x86_64",
+            "hw_qemu_guest_agent": "yes",
+            "hw_disk_bus": "scsi",
+            "hw_scsi_model": "virtio-scsi",
+            "hw_vif_multiqueue_enabled": "true",
+            "os_require_quiesce": "yes",
+            "oic_id": "talos-linux",
+            "oic_version": "1.14.6",
+            "oic_sha256": "402fc15dacf7207d539f28f1d40fb1cbab98f9f915e4a35c4deb9622c937c615"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "oic-versions/v1",
+  "name": "debian-13",
+  "generated_at": "2026-11-17T06:40:48Z",
+  "versions": [
+    {
+      "version": "13-20261116-2664",
+      "built_at": "2026-11-17T06:40:35Z",
+      "artifacts": [
+        {
+          "variant": null,
+          "filename": "debian-13-20261116-2664-x86_64.qcow2",
+          "sha256": "aa144704d883f3766007ce99c81b0a268415a3faed64e31e8cbc1407ff8b950f",
+          "sha512": "e5d38e0c5f62c262fb7e5c0cb0165e944f7bc1371bceddce042cb8f4274bacb67f448f5ac50caa2658b4555b68164b122c02d58e090eec2b36521e66c7f91e71",
+          "size": 277938176,
+          "virtual_size": 3221225472,
+          "firmware": "bios",
+          "arch": "x86_64",
+          "path": "13-20261116-2664/debian-13-20261116-2664-x86_64.qcow2",
+          "manifest": "13-20261116-2664/MANIFEST.json"
+        }
+      ]
+    },
+    {
+      "version": "13-20261111-2659",
+      "built_at": "2026-11-12T15:42:37Z",
+      "artifacts": [
+        {
+          "variant": null,
+          "filename": "debian-13-20261111-2659-x86_64.qcow2",
+          "sha256": "6706a0cddad28e3184586d3043949f9ce1223e7fc53ae8425993ae1d822a0822",
+          "sha512": "7dd9579c3c4f193c246de5168b36b13a81e91d2b844da407457e9127e7dbfd1c6fdb0617f73ad6f929b5870899530b9f25c337d211c06cd94c9588a05e66b479",
+          "size": 278593536,
+          "virtual_size": 3221225472,
+          "firmware": "bios",
+          "arch": "x86_64",
+          "path": "13-20261111-2659/debian-13-20261111-2659-x86_64.qcow2",
+          "manifest": "13-20261111-2659/MANIFEST.json"
+        }
+      ]
+    },
+    {
+      "version": "13-20261103-2651",
+      "built_at": "2026-11-12T11:40:22Z",
+      "artifacts": [
+        {
+          "variant": null,
+          "filename": "debian-13-20261103-2651-x86_64.qcow2",
+          "sha256": "cd8df17af8d579421211df7cdfa3dbbaef01d4b3e0c4c0319be0ae2814a57b7c",
+          "sha512": "dd5ff63aaa0add9959f13756586b6d4eb2402202c17408e09662c7019e5b1cb57be740c596015a0a94aa4adeaf439719be1aa56e65f2bc10bf07fab988bd5587",
+          "size": 277741568,
+          "virtual_size": 3221225472,
+          "firmware": "bios",
+          "arch": "x86_64",
+          "path": "13-20261103-2651/debian-13-20261103-2651-x86_64.qcow2",
+          "manifest": "13-20261103-2651/MANIFEST.json"
+        }
+      ]
+    }
+  ]
+}
