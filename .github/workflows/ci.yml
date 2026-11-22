@@ -40,9 +40,15 @@ jobs:
         run: |
           set -euo pipefail
           go build -o "$RUNNER_TEMP/bin/terraform-provider-openimages" .
-          for src in registry.terraform.io registry.opentofu.org; do
-            printf 'provider_installation {\n  dev_overrides { "%s/open-img-cloud/openimages" = "%s" }\n  direct {}\n}\n' "$src" "$RUNNER_TEMP/bin"
-          done > "$RUNNER_TEMP/cli.rc"
+          cat > "$RUNNER_TEMP/cli.rc" <<EOF
+          provider_installation {
+            dev_overrides {
+              "registry.terraform.io/open-img-cloud/openimages"  = "$RUNNER_TEMP/bin"
+              "registry.opentofu.org/open-img-cloud/openimages"  = "$RUNNER_TEMP/bin"
+            }
+            direct {}
+          }
+          EOF
           cd tests/e2e
           TF_CLI_CONFIG_FILE="$RUNNER_TEMP/cli.rc" ${{ matrix.cli }} apply -auto-approve -input=false
           TF_CLI_CONFIG_FILE="$RUNNER_TEMP/cli.rc" ${{ matrix.cli }} output -json checks | jq -e 'all(.[]; . == true)'
