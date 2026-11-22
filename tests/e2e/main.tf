@@ -10,6 +10,7 @@ data "openimages_image" "alpine_uefi" {
   id       = "alpine-linux"
   firmware = "uefi"
 }
+data "openimages_image" "al2" { id = "amazon-linux-2" }
 data "openimages_images" "all" {}
 data "openimages_images" "k8s" { tag = "kubernetes" }
 
@@ -23,5 +24,9 @@ output "checks" {
     catalog_size    = length(data.openimages_images.all.ids) > 20
     talos_in_k8s    = contains(data.openimages_images.k8s.ids, "talos-linux")
     bundle          = endswith(data.openimages_image.debian.bundle_url, ".bundle")
+    name_variant    = data.openimages_image.alpine_uefi.name == "Alpine Linux (UEFI)"
+    oic_variant     = data.openimages_image.alpine_uefi.glance_properties["oic_variant"] == "uefi"
+    debian_support  = !data.openimages_image.debian.end_of_life && data.openimages_image.debian.security_until != ""
+    al2_eol         = data.openimages_image.al2.end_of_life
   }
 }

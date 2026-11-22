@@ -11,7 +11,7 @@ data "openimages_image" "rocky" {
   id = "rocky-linux-9"
 }
 
-resource "proxmox_virtual_environment_download_file" "rocky" {
+resource "proxmox_download_file" "rocky" {
   node_name          = "pve"
   datastore_id       = "local"
   content_type       = "import"

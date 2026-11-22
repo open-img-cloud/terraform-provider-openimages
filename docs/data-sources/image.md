@@ -40,7 +40,10 @@ data "openimages_image" "debian_pinned" {
 - `sha256`, `sha512` (String) Checksums of the file (`sha512` is what Glance stores as `os_hash_value`).
 - `size`, `virtual_size` (Number) File and guest disk sizes, in bytes; `min_disk_gb` (Number) the virtual size rounded up to GiB.
 - `disk_format` (String) `qcow2`. `arch` (String) e.g. `x86_64`.
-- `glance_properties` (Map of String) The catalog's Glance properties plus the `oic_*` keys oic-sync sets.
+- `name` (String) Stable Glance name, as oic-sync gives it: the title, plus the variant in capitals when the image has several (`Alpine Linux (UEFI)`).
+- `glance_properties` (Map of String) The catalog's Glance properties plus the `oic_*` keys oic-sync sets (`oic_id`, `oic_version`, `oic_sha256`, `oic_variant`).
+- `optional_glance_properties` (Map of String) Properties the catalog recommends where the cloud supports them (`hw_rng_model`).
+- `end_of_life`, `end_of_life_soon` (Boolean) Upstream support status (endoflife.date dates published in the index); `security_until` (String) end of security support, `support_url` (String) its source.
 - `title`, `status`, `login_user`, `built_at` (String).
 - `bundle_url` (String) Sigstore bundle; verify with `cosign verify-blob --bundle` and the `cosign_certificate_identity_regexp` and `cosign_certificate_oidc_issuer` attributes.
 - `manifest_url` (String) `MANIFEST.json` of the version (commit, CI run, builder digest).

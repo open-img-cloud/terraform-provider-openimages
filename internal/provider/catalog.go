@@ -40,6 +40,39 @@ type Image struct {
 	Tags          []string   `json:"tags"`
 	VersionsURL   string     `json:"versions_url"`
 	Artifacts     []Artifact `json:"artifacts"`
+	Support       *Support   `json:"support"`
+
+	OptionalGlanceProperties map[string]string `json:"optional_glance_properties"`
+}
+
+// Support: upstream end of life (endoflife.date), as published in the index.
+type Support struct {
+	Release       string  `json:"release"`
+	SecurityUntil *string `json:"security_until"`
+	IsEOL         bool    `json:"is_eol"`
+	EOLSoon       bool    `json:"eol_soon"`
+	Source        *string `json:"source"`
+}
+
+// Name is the stable Glance name oic-sync gives an artifact: the catalog
+// title, plus the variant in capitals when the image has several.
+func (im *Image) Name(a *Artifact) string {
+	if a.Variant != nil && len(im.Artifacts) > 1 {
+		return im.Title + " (" + strings.ToUpper(*a.Variant) + ")"
+	}
+	return im.Title
+}
+
+// Properties: the artifact's Glance properties plus oic_variant, as oic-sync sets them.
+func Properties(a *Artifact) map[string]string {
+	out := make(map[string]string, len(a.GlanceProperties)+1)
+	for k, v := range a.GlanceProperties {
+		out[k] = v
+	}
+	if a.Variant != nil {
+		out["oic_variant"] = *a.Variant
+	}
+	return out
 }
 
 type Artifact struct {

@@ -137,3 +137,34 @@ func TestBadSchema(t *testing.T) {
 		t.Fatalf("want unsupported schema, got %v", err)
 	}
 }
+
+func TestNameSupportProperties(t *testing.T) {
+	_, c := fixture(t)
+	idx, _ := c.Index(context.Background())
+	alpine, _ := idx.Find("alpine-linux")
+	uefi, _ := SelectArtifact(alpine, "", "uefi")
+	if got := alpine.Name(uefi); got != alpine.Title+" (UEFI)" {
+		t.Fatalf("variant name: %q", got)
+	}
+	if p := Properties(uefi); p["oic_variant"] != "uefi" || p["oic_id"] != "alpine-linux" {
+		t.Fatalf("oic_variant: %v", p)
+	}
+	if _, ok := uefi.GlanceProperties["oic_variant"]; ok {
+		t.Fatal("Properties must not modify the cached index")
+	}
+	deb, _ := idx.Find("debian-13")
+	a, _ := SelectArtifact(deb, "", "")
+	if deb.Name(a) != deb.Title {
+		t.Fatalf("single-artifact name: %q", deb.Name(a))
+	}
+	if _, ok := Properties(a)["oic_variant"]; ok {
+		t.Fatal("no oic_variant without a variant")
+	}
+	al2, _ := idx.Find("amazon-linux-2")
+	if al2.Support == nil || !al2.Support.IsEOL || al2.Support.SecurityUntil == nil {
+		t.Fatalf("Amazon Linux 2 is past its end of life in the fixture: %+v", al2.Support)
+	}
+	if deb.Support == nil || deb.Support.IsEOL {
+		t.Fatalf("Debian 13 is supported: %+v", deb.Support)
+	}
+}

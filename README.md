@@ -15,7 +15,6 @@
   <a href="https://openimages.cloud"><b>Website</b></a> ·
   <a href="https://openimages.cloud/images/">Catalog</a> ·
   <a href="https://images.openimages.cloud/index.json">index.json</a> ·
-  <a href="https://github.com/open-img-cloud/terraform-openstack-openimages">Terraform module</a> ·
   <a href="https://github.com/open-img-cloud/terraform-provider-openimages/issues">Report an issue</a>
 </p>
 
@@ -53,17 +52,17 @@ Proxmox VE (bpg/proxmox) and a Glance checksum postcondition: [`examples/`](exam
 
 | | |
 |---|---|
-| [`openimages_image`](docs/data-sources/image.md) | One image: `url`, `sha256`, `sha512`, `min_disk_gb`, `glance_properties`, `bundle_url`, `login_user`... at the latest version or a pinned `version`, by `variant` or `firmware` |
+| [`openimages_image`](docs/data-sources/image.md) | One image: `url`, `sha256`, `sha512`, `min_disk_gb`, `name`, `glance_properties`, `end_of_life`, `bundle_url`, `login_user`... at the latest version or a pinned `version`, by `variant` or `firmware` |
 | [`openimages_images`](docs/data-sources/images.md) | The catalog ids, filtered by `tag` or `os_distro` |
 
 Provider setting: `index_url` (or `$OPENIMAGES_INDEX_URL`) for an internal mirror.
 
-## Module or provider?
+## Several images, like oic-sync
 
-The [Terraform/OpenTofu module](https://github.com/open-img-cloud/terraform-openstack-openimages)
-creates the Glance images for you, with oic-sync's names and properties. This provider gives
-you the data and lets you write the resource yourself (OpenStack, Proxmox, or anything that
-takes a URL and a checksum).
+[`examples/openstack-catalog`](examples/openstack-catalog) imports a list of catalog images
+into Glance with oic-sync's names (`name`), the catalog properties, a check of the digest
+Glance computes, and images past their upstream end of life (`end_of_life`) left out. It
+replaces the former `terraform-openstack-openimages` module.
 
 ## Verifying the image
 

@@ -33,7 +33,13 @@ type imageModel struct {
 	BundleURL        types.String `tfsdk:"bundle_url"`
 	ManifestURL      types.String `tfsdk:"manifest_url"`
 	BuiltAt          types.String `tfsdk:"built_at"`
+	Name             types.String `tfsdk:"name"`
 	GlanceProperties types.Map    `tfsdk:"glance_properties"`
+	OptionalProps    types.Map    `tfsdk:"optional_glance_properties"`
+	EndOfLife        types.Bool   `tfsdk:"end_of_life"`
+	EndOfLifeSoon    types.Bool   `tfsdk:"end_of_life_soon"`
+	SecurityUntil    types.String `tfsdk:"security_until"`
+	SupportURL       types.String `tfsdk:"support_url"`
 	CosignIdentity   types.String `tfsdk:"cosign_certificate_identity_regexp"`
 	CosignIssuer     types.String `tfsdk:"cosign_certificate_oidc_issuer"`
 }
@@ -70,6 +76,15 @@ func (d *imageDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, 
 			"bundle_url":   computed("Sigstore bundle of the file (cosign verify-blob --bundle)."),
 			"manifest_url": computed("MANIFEST.json of this version (commit, CI run, builder digest)."),
 			"built_at":     computed("Build time, RFC 3339."),
+			"name":         computed("Stable Glance name, the same oic-sync gives: the title, plus the variant in capitals when the image has several (`Alpine Linux (UEFI)`)."),
+			"optional_glance_properties": schema.MapAttribute{
+				Computed: true, ElementType: types.StringType,
+				Description: "Properties the catalog recommends where the cloud supports them (e.g. hw_rng_model); merge them into `properties` if yours does.",
+			},
+			"end_of_life":      schema.BoolAttribute{Computed: true, Description: "The upstream release is past its end of life (endoflife.date dates published in the index)."},
+			"end_of_life_soon": schema.BoolAttribute{Computed: true, Description: "The upstream release reaches its end of life soon."},
+			"security_until":   computed("End of upstream security support, YYYY-MM-DD (empty when unknown)."),
+			"support_url":      computed("Source of the support dates (endoflife.date page)."),
 			"glance_properties": schema.MapAttribute{
 				Computed: true, ElementType: types.StringType,
 				Description: "Glance properties of the catalog (os_distro, hw_qemu_guest_agent, hw_disk_bus...) plus the oic_* keys oic-sync sets, for `properties` of openstack_images_image_v2.",
@@ -113,8 +128,30 @@ func (d *imageDataSource) Read(ctx context.Context, req datasource.ReadRequest, 
 		resp.Diagnostics.AddError("No matching artifact", err.Error())
 		return
 	}
-	props, diags := types.MapValueFrom(ctx, types.StringType, a.GlanceProperties)
+	props, diags := types.MapValueFrom(ctx, types.StringType, Properties(a))
 	resp.Diagnostics.Append(diags...)
+	optional := im.OptionalGlanceProperties
+	if optional == nil {
+		optional = map[string]string{}
+	}
+	opt, diags := types.MapValueFrom(ctx, types.StringType, optional)
+	resp.Diagnostics.Append(diags...)
+	m.OptionalProps = opt
+	m.Name = types.StringValue(im.Name(a))
+	eol, soon, until, src := false, false, "", ""
+	if im.Support != nil {
+		eol, soon = im.Support.IsEOL, im.Support.EOLSoon && !im.Support.IsEOL
+		if im.Support.SecurityUntil != nil {
+			until = *im.Support.SecurityUntil
+		}
+		if im.Support.Source != nil {
+			src = *im.Support.Source
+		}
+	}
+	m.EndOfLife = types.BoolValue(eol)
+	m.EndOfLifeSoon = types.BoolValue(soon)
+	m.SecurityUntil = types.StringValue(until)
+	m.SupportURL = types.StringValue(src)
 
 	m.Version = types.StringValue(a.Version)
 	if a.Variant != nil {
