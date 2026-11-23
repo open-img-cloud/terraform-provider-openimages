@@ -6,6 +6,10 @@ description: |-
 
 # openimages_images (Data Source)
 
+The images of the catalog, filtered by tag or OpenStack `os_distro`; archived images (past their
+upstream end of life) are left out unless `include_archived` is true. Use the ids with
+`openimages_image`.
+
 ## Example Usage
 
 ```terraform
