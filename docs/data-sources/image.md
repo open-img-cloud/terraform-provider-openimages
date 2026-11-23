@@ -6,16 +6,37 @@ description: |-
 
 # openimages_image (Data Source)
 
-One image of the catalog, at its latest version or a given one.
+One image of the catalog, at its latest version or a given one: the versioned download URL,
+the checksums, the sizes and the Glance properties, ready for `openstack_images_image_v2` or a
+Proxmox VE download. Images with several variants (Alpine BIOS and UEFI, Alpaquita glibc and
+musl) are selected with `variant` or `firmware`; without them, the catalog's first artifact.
 
 ## Example Usage
 
 ```terraform
-data "openimages_image" "alpine" {
+# Latest Debian 13, imported by Glance itself
+data "openimages_image" "debian" {
+  id = "debian-13"
+}
+
+resource "openstack_images_image_v2" "debian" {
+  name             = "${data.openimages_image.debian.name} (${data.openimages_image.debian.version})"
+  image_source_url = data.openimages_image.debian.url
+  web_download     = true
+  container_format = "bare"
+  disk_format      = data.openimages_image.debian.disk_format
+  min_disk_gb      = data.openimages_image.debian.min_disk_gb
+  min_ram_mb       = data.openimages_image.debian.min_ram_mb
+  properties       = data.openimages_image.debian.glance_properties
+}
+
+# A variant, by firmware
+data "openimages_image" "alpine_uefi" {
   id       = "alpine-linux"
   firmware = "uefi"
 }
 
+# A given version (from the image's versions.json)
 data "openimages_image" "debian_pinned" {
   id      = "debian-13"
   version = "13-20261103-2651"
