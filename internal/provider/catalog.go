@@ -41,6 +41,8 @@ type Image struct {
 	VersionsURL   string     `json:"versions_url"`
 	Artifacts     []Artifact `json:"artifacts"`
 	Support       *Support   `json:"support"`
+	// MinRAM is the Glance min_ram in MiB (index field since 2026-11, SCS-0102); 0 when absent.
+	MinRAM int64 `json:"min_ram"`
 
 	OptionalGlanceProperties map[string]string `json:"optional_glance_properties"`
 }

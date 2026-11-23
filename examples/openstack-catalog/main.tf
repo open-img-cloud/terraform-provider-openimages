@@ -39,6 +39,7 @@ resource "openstack_images_image_v2" "this" {
   container_format = "bare"
   disk_format      = each.value.disk_format
   min_disk_gb      = each.value.min_disk_gb
+  min_ram_mb       = each.value.min_ram_mb
   properties = merge(
     var.with_optional_properties ? each.value.optional_glance_properties : {},
     each.value.glance_properties,

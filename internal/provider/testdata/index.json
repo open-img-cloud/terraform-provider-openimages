@@ -1,7 +1,7 @@
 {
   "schema": "oic-index/v1",
   "base_url": "https://images.openimages.cloud",
-  "generated_at": "2026-11-22T10:27:25Z",
+  "generated_at": "2026-11-23T09:54:05Z",
   "signing": {
     "type": "cosign-keyless",
     "bundle_format": "sigstore-bundle",
@@ -38,6 +38,7 @@
         "cloud-init",
         "signed"
       ],
+      "min_ram": 512,
       "glance_properties": {
         "os_type": "linux",
         "os_admin_user": "alpine",
@@ -79,6 +80,14 @@
             "hw_scsi_model": "virtio-scsi",
             "hw_vif_multiqueue_enabled": "true",
             "os_require_quiesce": "yes",
+            "image_original_user": "alpine",
+            "image_source": "https://images.openimages.cloud/alpine-linux/3.24.1/alpine-3.24.1-bios-x86_64.qcow2",
+            "image_build_date": "2026-11-12T15:51:23Z",
+            "image_description": "https://openimages.cloud/images/alpine-linux/",
+            "os_purpose": "generic",
+            "replace_frequency": "critical_bug",
+            "provided_until": "2028-06-01",
+            "uuid_validity": "last-3",
             "oic_id": "alpine-linux",
             "oic_version": "3.24.1",
             "oic_sha256": "d9b37c74dd3b8f97011f3a760665e3b8e9da5eca4639f3f1def106689af20706"
@@ -114,6 +123,14 @@
             "os_require_quiesce": "yes",
             "hw_firmware_type": "uefi",
             "hw_machine_type": "q35",
+            "image_original_user": "alpine",
+            "image_source": "https://images.openimages.cloud/alpine-linux/3.24.1/alpine-3.24.1-uefi-x86_64.qcow2",
+            "image_build_date": "2026-11-12T16:08:20Z",
+            "image_description": "https://openimages.cloud/images/alpine-linux/",
+            "os_purpose": "custom",
+            "replace_frequency": "critical_bug",
+            "provided_until": "2028-06-01",
+            "uuid_validity": "last-3",
             "oic_id": "alpine-linux",
             "oic_version": "3.24.1",
             "oic_sha256": "88aaf24f4b7296e367e1470033916cdb3e97b893d597afb4315e23ed5bfe45e2"
@@ -150,6 +167,7 @@
         "cloud-init",
         "signed"
       ],
+      "min_ram": 1024,
       "glance_properties": {
         "os_type": "linux",
         "os_admin_user": "ec2-user",
@@ -191,6 +209,14 @@
             "hw_scsi_model": "virtio-scsi",
             "hw_vif_multiqueue_enabled": "true",
             "os_require_quiesce": "yes",
+            "image_original_user": "ec2-user",
+            "image_source": "https://images.openimages.cloud/amazon-linux-2/2.0.20261120.0/amzn2-2.0.20261120.0-x86_64.qcow2",
+            "image_build_date": "2026-11-21T06:42:21Z",
+            "image_description": "https://openimages.cloud/images/amazon-linux-2/",
+            "os_purpose": "generic",
+            "replace_frequency": "critical_bug",
+            "provided_until": "2026-06-30",
+            "uuid_validity": "last-3",
             "oic_id": "amazon-linux-2",
             "oic_version": "2.0.20261120.0",
             "oic_sha256": "4b57499852417ccf3e8bd65021f48ed35c9a1ce8c03bda3a6592e6bbe012c87e"
@@ -227,6 +253,7 @@
         "cloud-init",
         "signed"
       ],
+      "min_ram": 1024,
       "glance_properties": {
         "os_type": "linux",
         "os_admin_user": "debian",
@@ -268,6 +295,14 @@
             "hw_scsi_model": "virtio-scsi",
             "hw_vif_multiqueue_enabled": "true",
             "os_require_quiesce": "yes",
+            "image_original_user": "debian",
+            "image_source": "https://images.openimages.cloud/debian-13/13-20261116-2664/debian-13-20261116-2664-x86_64.qcow2",
+            "image_build_date": "2026-11-17T06:40:35Z",
+            "image_description": "https://openimages.cloud/images/debian-13/",
+            "os_purpose": "generic",
+            "replace_frequency": "critical_bug",
+            "provided_until": "2030-06-30",
+            "uuid_validity": "last-3",
             "oic_id": "debian-13",
             "oic_version": "13-20261116-2664",
             "oic_sha256": "aa144704d883f3766007ce99c81b0a268415a3faed64e31e8cbc1407ff8b950f"
@@ -295,6 +330,7 @@
         "immutable",
         "signed"
       ],
+      "min_ram": 2048,
       "glance_properties": {
         "os_type": "linux",
         "hw_qemu_guest_agent": "yes",
@@ -333,6 +369,14 @@
             "hw_scsi_model": "virtio-scsi",
             "hw_vif_multiqueue_enabled": "true",
             "os_require_quiesce": "yes",
+            "image_original_user": "none",
+            "image_source": "https://images.openimages.cloud/talos-linux/1.14.6/talos-1.14.6-x86_64.qcow2",
+            "image_build_date": "2026-11-22T10:19:36Z",
+            "image_description": "https://openimages.cloud/images/talos-linux/",
+            "os_purpose": "k8snode",
+            "replace_frequency": "critical_bug",
+            "provided_until": "none",
+            "uuid_validity": "last-3",
             "oic_id": "talos-linux",
             "oic_version": "1.14.6",
             "oic_sha256": "402fc15dacf7207d539f28f1d40fb1cbab98f9f915e4a35c4deb9622c937c615"

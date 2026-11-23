@@ -39,6 +39,7 @@ data "openimages_image" "debian_pinned" {
 - `url` (String) Versioned, immutable download URL.
 - `sha256`, `sha512` (String) Checksums of the file (`sha512` is what Glance stores as `os_hash_value`).
 - `size`, `virtual_size` (Number) File and guest disk sizes, in bytes; `min_disk_gb` (Number) the virtual size rounded up to GiB.
+- `min_ram_mb` (Number) Smallest RAM the image boots with, in MiB (Glance `min_ram_mb`); 0 when the index does not publish it.
 - `disk_format` (String) `qcow2`. `arch` (String) e.g. `x86_64`.
 - `name` (String) Stable Glance name, as oic-sync gives it: the title, plus the variant in capitals when the image has several (`Alpine Linux (UEFI)`).
 - `glance_properties` (Map of String) The catalog's Glance properties plus the `oic_*` keys oic-sync sets (`oic_id`, `oic_version`, `oic_sha256`, `oic_variant`).

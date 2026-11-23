@@ -19,6 +19,7 @@ resource "openstack_images_image_v2" "debian" {
   container_format = "bare"
   disk_format      = data.openimages_image.debian.disk_format
   min_disk_gb      = data.openimages_image.debian.min_disk_gb
+  min_ram_mb       = data.openimages_image.debian.min_ram_mb
   properties       = data.openimages_image.debian.glance_properties
 
   # Glance computes the SHA-512 of what it downloaded: it must be the catalog's.

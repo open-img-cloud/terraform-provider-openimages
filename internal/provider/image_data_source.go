@@ -30,6 +30,7 @@ type imageModel struct {
 	Size             types.Int64  `tfsdk:"size"`
 	VirtualSize      types.Int64  `tfsdk:"virtual_size"`
 	MinDiskGB        types.Int64  `tfsdk:"min_disk_gb"`
+	MinRAMMB         types.Int64  `tfsdk:"min_ram_mb"`
 	BundleURL        types.String `tfsdk:"bundle_url"`
 	ManifestURL      types.String `tfsdk:"manifest_url"`
 	BuiltAt          types.String `tfsdk:"built_at"`
@@ -73,6 +74,7 @@ func (d *imageDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, 
 			"size":         schema.Int64Attribute{Computed: true, Description: "File size in bytes."},
 			"virtual_size": schema.Int64Attribute{Computed: true, Description: "Disk size seen by the guest, in bytes."},
 			"min_disk_gb":  schema.Int64Attribute{Computed: true, Description: "Virtual size rounded up to GiB, for Glance `min_disk_gb`."},
+			"min_ram_mb":   schema.Int64Attribute{Computed: true, Description: "Smallest RAM the image boots with, in MiB, for Glance `min_ram_mb` (0 when the index does not publish it)."},
 			"bundle_url":   computed("Sigstore bundle of the file (cosign verify-blob --bundle)."),
 			"manifest_url": computed("MANIFEST.json of this version (commit, CI run, builder digest)."),
 			"built_at":     computed("Build time, RFC 3339."),
@@ -173,6 +175,7 @@ func (d *imageDataSource) Read(ctx context.Context, req datasource.ReadRequest, 
 	m.Size = types.Int64Value(a.Size)
 	m.VirtualSize = types.Int64Value(a.VirtualSize)
 	m.MinDiskGB = types.Int64Value(MinDiskGB(a.VirtualSize))
+	m.MinRAMMB = types.Int64Value(im.MinRAM)
 	m.BundleURL = types.StringValue(a.BundleURL)
 	m.ManifestURL = types.StringValue(a.ManifestURL)
 	m.BuiltAt = types.StringValue(a.BuiltAt)

@@ -168,3 +168,14 @@ func TestNameSupportProperties(t *testing.T) {
 		t.Fatalf("Debian 13 is supported: %+v", deb.Support)
 	}
 }
+
+func TestMinRAM(t *testing.T) {
+	_, c := fixture(t)
+	idx, _ := c.Index(context.Background())
+	for id, want := range map[string]int64{"alpine-linux": 512, "debian-13": 1024, "talos-linux": 2048} {
+		im, err := idx.Find(id)
+		if err != nil || im.MinRAM != want {
+			t.Fatalf("%s min_ram: got %d, want %d (%v)", id, im.MinRAM, want, err)
+		}
+	}
+}
