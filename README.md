@@ -42,6 +42,7 @@ resource "openstack_images_image_v2" "debian" {
   container_format = "bare"
   disk_format      = data.openimages_image.debian.disk_format
   min_disk_gb      = data.openimages_image.debian.min_disk_gb
+  min_ram_mb       = data.openimages_image.debian.min_ram_mb
   properties       = data.openimages_image.debian.glance_properties
 }
 ```
@@ -52,7 +53,7 @@ Proxmox VE (bpg/proxmox) and a Glance checksum postcondition: [`examples/`](exam
 
 | | |
 |---|---|
-| [`openimages_image`](docs/data-sources/image.md) | One image: `url`, `sha256`, `sha512`, `min_disk_gb`, `name`, `glance_properties`, `end_of_life`, `bundle_url`, `login_user`... at the latest version or a pinned `version`, by `variant` or `firmware` |
+| [`openimages_image`](docs/data-sources/image.md) | One image: `url`, `sha256`, `sha512`, `min_disk_gb`, `min_ram_mb`, `name`, `glance_properties`, `end_of_life`, `bundle_url`, `login_user`... at the latest version or a pinned `version`, by `variant` or `firmware` |
 | [`openimages_images`](docs/data-sources/images.md) | The catalog ids, filtered by `tag` or `os_distro` |
 
 Provider setting: `index_url` (or `$OPENIMAGES_INDEX_URL`) for an internal mirror.

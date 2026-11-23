@@ -28,5 +28,6 @@ output "checks" {
     oic_variant     = data.openimages_image.alpine_uefi.glance_properties["oic_variant"] == "uefi"
     debian_support  = !data.openimages_image.debian.end_of_life && data.openimages_image.debian.security_until != ""
     al2_eol         = data.openimages_image.al2.end_of_life
+    min_ram         = data.openimages_image.debian.min_ram_mb >= 128
   }
 }
